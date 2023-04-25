@@ -6,12 +6,16 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public abstract class AbstractCrudServiceImpl<Entity,Dto>
+public abstract class AbstractCrudServiceImpl<
+        Entity,
+        Dto,
+        Repository extends JpaRepository<Entity,Long>,
+        Mapper extends GenericMapper<Entity,Dto>>
         implements IAbstractCrudService<Entity,Dto> {
-    private final JpaRepository<Entity,Long> repo;
-    private final GenericMapper<Entity,Dto> mapper;
+    protected final Repository repo;
+    protected final Mapper mapper;
 
-    public AbstractCrudServiceImpl(JpaRepository<Entity,Long> repo, GenericMapper<Entity, Dto> mapper) {
+    public AbstractCrudServiceImpl(Repository repo, Mapper mapper) {
         this.repo = repo;
         this.mapper = mapper;
     }
