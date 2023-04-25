@@ -1,0 +1,20 @@
+package dwn.slrm.generic.models;
+
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.io.Serializable;
+
+@MappedSuperclass
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public abstract class BaseEntity implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @Version
+    private int version;
+}
