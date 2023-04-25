@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr" th:fragment="htmlcontent(title,contentBody)">
+<head>
+    <title th:text="${title != null ? title : 'Project'}">Project Name</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/main.css" />
+</head>
+<body class="is-preload"  style="width: 100%">
+
+<!-- Wrapper -->
+<div id="wrapper">
+    <!-- Main -->
+    <div id="main">
+        <div class="inner">
+            <!-- Header -->
+            <header id="header">
+                <a href="all" class="logo"><strong>SLRM ></strong> <span th:remove="tag" th:text="${#strings.capitalize(path)}"></span></a>
+                <ul class="icons">
+                    <li><a class="icon brands fa-twitter" href="https://twitter.com/DawanFrance"><span class="label">Twitter</span></a>
+                    </li>
+                    <li><a class="icon brands fa-facebook-f" href="https://www.facebook.com/DawanFrance"><span
+                            class="label">Facebook</span></a></li>
+                    <li><a class="icon brands fa-youtube" href="https://www.youtube.com/dawantv"><span class="label">YouTube</span></a>
+                    </li>
+                    <li><a class="icon brands fa-instagram" href="https://www.instagram.com/dawanfrance/"><span
+                            class="label">Instagram</span></a></li>
+                    <li><a class="icon brands fa-linkedin" href="https://www.linkedin.com/company/dawan/"><span
+                            class="label">LinkedIn</span></a></li>
+                </ul>
+            </header>
+            <!-- Section -->
+            <section th:insert="${contentBody}" style="padding: 3em 0 3em 0">
+            </section>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div id="sidebar">
+        <div class="inner">
+            <!-- Menu -->
+            <nav id="menu">
+                <header class="major">
+                    <h2>Menu</h2>
+                </header>
+                <ul>
+                    <li><a href="/">Homepage</a></li>
+                    <li th:each="dir : ${paths}"><a th:href="${#strings.concat('/',dir)}" th:text="${dir}"></a></li>
+                </ul>
+            </nav>
+            <!-- Footer -->
+            <footer id="footer">
+                <p class="copyright">Yanis Adekalom</p>
+            </footer>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/browser.min.js"></script>
+<script src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
+
+</body>
+</html>

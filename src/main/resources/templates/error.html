@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr" th:replace="~{fragments/general.html :: htmlcontent('Sring Lombok Record MapStruct',~{ :: .body-content})}">
+    <section class="body-content" th:remove="tag">
+        <div style="position: relative">
+            <div style="display: flex; flex-direction: column; align-items: center">
+                <h1 style="text-align: center"> Oups ! Quelque chose ne passe pas (Enfin presque ...)</h1>
+                <img style="flex-grow: 0" src="/images/error.gif" alt="error-gif">
+                <label th:text="${message}"></label>
+            </div>
+        </div>
+    </section>
+</html>
