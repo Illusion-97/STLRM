@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.List;
+
 public abstract class AbstractController<Entity,Dto,Service extends IAbstractCrudService<Entity,Dto>> {
 
     protected final Service service;
@@ -27,6 +29,11 @@ public abstract class AbstractController<Entity,Dto,Service extends IAbstractCru
         return prefix + "/byId";
     }
 
+    // -> ResumeController
+    // ResumeController.prefix -> resumes
+
+    // -> ProjetController
+    // ProjetController.prefix -> projets
     @ModelAttribute(name = "prefix")
     public String getPrefix(){
         return prefix;
