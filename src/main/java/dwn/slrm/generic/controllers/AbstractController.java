@@ -3,6 +3,8 @@ package dwn.slrm.generic.controllers;
 import dwn.slrm.generic.services.IAbstractCrudService;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 
 public abstract class AbstractController<Entity,Dto,Service extends IAbstractCrudService<Entity,Dto>> {
 
@@ -18,5 +20,15 @@ public abstract class AbstractController<Entity,Dto,Service extends IAbstractCru
     public String all(Model model) {
         model.addAttribute("elements", service.all());
         return prefix + "/all";
+    }
+
+    @GetMapping("/{id}")
+    public String getById(Model model, @PathVariable String id) {
+        return prefix + "/byId";
+    }
+
+    @ModelAttribute(name = "prefix")
+    public String getPrefix(){
+        return prefix;
     }
 }

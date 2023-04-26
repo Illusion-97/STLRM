@@ -1,7 +1,7 @@
 package dwn.slrm.business.DossierProjet;
 
 import dwn.slrm.business.Personne.PersonneDto;
-import dwn.slrm.business.projet.ProjetDto;
+import dwn.slrm.business.projets.ProjetDto;
 import dwn.slrm.business.resume.ResumeDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en"
+      th:fragment="all(thead,tbody)"
+      th:replace="~{fragments/general.html :: htmlcontent('Sring Lombok Record MapStruct',~{ :: .body-content})}">
+    <section class="body-content" th:remove="tag">
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Version</th>
+                    <th th:replace="${thead}"></th>
+                </tr>
+                </thead>
+                <tbody th:replace="${tbody}">
+                <tr th:fragment="row(element,data)">
+                    <td th:text="${element.id}"></td>
+                    <td>[[${element.version}]]</td>
+                    <td th:replace="${data}"></td>
+                    <td><a th:href="@{'/'+${prefix}+'/'+${element.id}}" class="button">Modifier</a></td>
+                    <td><a class="button primary">Supprimer</a></td>
+                </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th><a th:href="@{'/'+${prefix}+'/0'}" class="button">Ajouter</a></th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </section>
+</html>

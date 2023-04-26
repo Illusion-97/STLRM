@@ -1,6 +1,23 @@
 <!DOCTYPE html>
-<html lang="en" th:replace="~{fragments/general.html :: htmlcontent('Sring Lombok Record MapStruct',~{ :: .body-content})}">
-    <section class="body-content" th:remove="tag">
-        <h1>Resumes All</h1>
-    </section>
+<html lang="en" th:replace="~{fragments/all.html :: all(~{ :: .thead},~{ :: .tbody})}">
+<table>
+    <thead>
+    <tr class="thead" th:remove="tag">
+        <th>Langue</th>
+        <th>Texte</th>
+        <th>Dossier Id</th>
+    </tr>
+    </thead>
+    <tbody class="tbody">
+    <tr th:each="resume : ${elements}">
+        <div th:replace="~{fragments/all.html :: row(${resume},~{ :: .data})}">
+            <div class="data">
+                <td>[[${resume.langue}]]</td>
+                <td>[[${resume.texte}]]</td>
+                <td>[[${resume.dossierId}]]</td>
+            </div>
+        </div>
+    </tr>
+    </tbody>
+</table>
 </html>
