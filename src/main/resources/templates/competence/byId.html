@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{fragments/byId.html :: byId(~{ :: form})}">
+    <form th:remove="tag">
+        <div class="col-12">
+            <label> Nom de Compétence :
+                <input type="text" th:field="*{nom}" placeholder="Conception de templates Thymeleaf">
+            </label>
+            <p th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></p>
+        </div>
+    </form>
+</html>

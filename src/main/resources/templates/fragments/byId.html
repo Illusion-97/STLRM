@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en"
+      th:fragment="byId(form)"
+      th:replace="~{fragments/general.html :: htmlcontent('Sring Lombok Record MapStruct',~{ :: .body-content})}">
+    <section class="body-content" th:remove="tag">
+        <form method="post" th:action="@{'/'+${prefix}}" th:object="${element}">
+            <div class="row gtr-uniform">
+                <input type="hidden" th:fied="*{id}">
+                <input type="hidden" th:fied="*{version}">
+                <div th:replace="${form}"></div>
+                <div class="col-12">
+                    <ul class="actions">
+                        <li><input type="submit" value="Enregistrer" class="primary" /></li>
+                        <li><input type="reset" value="Reset" /></li>
+                    </ul>
+                </div>
+            </div>
+        </form>
+    </section>
+</html>
