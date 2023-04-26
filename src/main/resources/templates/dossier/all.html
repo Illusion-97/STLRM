@@ -3,18 +3,20 @@
 <table>
     <thead>
     <tr class="thead" th:remove="tag">
-        <th>Langue</th>
-        <th>Texte</th>
-        <th>Dossier Id</th>
+        <th>Année</th>
+        <th>Candidat</th>
+        <th>Projet</th>
+        <th>Nb. Résumés</th>
     </tr>
     </thead>
     <tbody class="tbody">
     <tr th:each="element : ${elements}">
         <div th:replace="~{fragments/all.html :: row(${element},~{ :: .data})}">
             <div class="data">
-                <td>[[${element.langue}]]</td>
-                <td>[[${element.texte}]]</td>
-                <td>[[${element.dossierId}]]</td>
+                <td>[[${element.annee}]]</td>
+                <td>[[${element.candidat.nom}]] [[${element.candidat.prenom}]]</td>
+                <td>[[${element.projet.nom}]]</td>
+                <td>[[${#lists.size(element.resumes)}]]</td>
             </div>
         </div>
     </tr>
