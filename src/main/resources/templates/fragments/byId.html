@@ -5,8 +5,8 @@
     <section class="body-content" th:remove="tag">
         <form method="post" th:action="@{'/'+${prefix}}" th:object="${element}">
             <div class="row gtr-uniform">
-                <input type="hidden" th:fied="*{id}">
-                <input type="hidden" th:fied="*{version}">
+                <input type="hidden" th:field="*{id}">
+                <input type="hidden" th:field="*{version}">
                 <div th:replace="${form}"></div>
                 <div class="col-12">
                     <ul class="actions">
