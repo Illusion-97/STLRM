@@ -10,8 +10,8 @@
             <label>Compétences :</label>
             <ul style="max-height: 10vh; overflow: auto">
                 <li class="row" style="list-style-type: none; border-bottom: 1px gray solid; align-items: center" th:each="comp : ${competences}">
-                    <input style="appearance: auto; -moz-appearance: auto; opacity: 1; margin: 0; vertical-align: middle; height: 0.9em;" type="checkbox" th:id="${{comp}}" th:value="${{comp}}" th:field="*{competences}"/>
-                    <label style="margin: 0" th:for="${{comp}}" th:text="${comp.nom}"></label>
+                    <input style="appearance: auto; -moz-appearance: auto; opacity: 1; margin: 0; vertical-align: middle; height: 0.9em;" type="checkbox" th:id="${comp.nom}" th:value="${{comp}}" th:field="*{competences}"/>
+                    <label style="margin: 0" th:for="${comp.nom}" th:text="${comp.nom}"></label>
                 </li>
             </ul>
         </div>
@@ -20,8 +20,8 @@
             <label>Paricipants :</label>
             <ul style="max-height: 10vh; overflow: auto">
                 <li class="row" style="list-style-type: none; border-bottom: 1px gray solid; align-items: center" th:each="personne : ${personnes}">
-                    <input style="appearance: auto; -moz-appearance: auto; opacity: 1; margin: 0; vertical-align: middle; height: 0.9em;" type="checkbox" th:id="${{personne}}" th:value="${{personne}}" th:field="*{participants}"/>
-                    <label style="margin: 0" th:for="${{personne}}" th:text="${personne.nom}"></label>
+                    <input style="appearance: auto; -moz-appearance: auto; opacity: 1; margin: 0; vertical-align: middle; height: 0.9em;" type="checkbox" th:id="${personne.nom}" th:value="${{personne}}" th:field="*{participants}"/>
+                    <label style="margin: 0" th:for="${personne.nom}" th:text="${personne.nom}"></label>
                 </li>
             </ul>
         </div>
