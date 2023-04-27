@@ -21,5 +21,21 @@
             <option th:each="student : ${students}" th:value="${student.id}" th:text="${student.nom}"></option>
         </select>
     </div>
+    <div th:if="*{id} != 0" class="col-12">
+        <label>Liens :</label>
+        <div class="row">
+            <div class="col-6 col-12-xsmall row" style="justify-content: space-evenly">
+                <a th:each="langue, index : ${langues}"
+                   th:with="resume = ${element.resumes.?[#strings.contains(langue,#root.langue)]}"
+                   th:href="${#strings.concat('/resumes/', #lists.isEmpty(resume) ? 'create/' + element.id + '/' + langue : resume[0].id)}"
+                   class="button" th:inline="text">
+                    Résumé : [[${langue}]]
+                </a>
+            </div>
+            <div class="col-6 col-12-xsmall" >
+                <a class="button primary fit" th:href="${#strings.concat('/dossiers/generate/',element.id)}">Générer le PDF</a>
+            </div>
+        </div>
+    </div>
 </form>
 </html>

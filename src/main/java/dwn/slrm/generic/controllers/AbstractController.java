@@ -14,10 +14,14 @@ public abstract class AbstractController<Entity,Dto,Service extends IAbstractCru
 
     protected final Service service;
     protected final String prefix;
+    protected final String allPath;
+    protected final String byIdPath;
 
     protected AbstractController(Service service, String prefix) {
         this.service = service;
         this.prefix = prefix;
+        allPath = prefix + "/all";
+        byIdPath = prefix + "/byId";
     }
 
     @GetMapping
@@ -33,7 +37,7 @@ public abstract class AbstractController<Entity,Dto,Service extends IAbstractCru
     }
 
     @PostMapping // POST -> /projet
-    public String save(@Valid @ModelAttribute(name = "element") Dto element, BindingResult result) {
+    public String save(@Valid @ModelAttribute(name = "element") Dto element, BindingResult result, Model model) {
         if(result.hasErrors()){
             return prefix + "/byId";
         }
@@ -49,5 +53,12 @@ public abstract class AbstractController<Entity,Dto,Service extends IAbstractCru
     @ModelAttribute(name = "prefix")
     public String getPrefix(){
         return prefix;
+    }
+
+    protected String redirect(String path) {
+        return "redirect:/" + path;
+    }
+    protected String redirect(String path, long id) {
+        return redirect(path) + "/" + id;
     }
 }

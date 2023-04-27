@@ -6,7 +6,11 @@ import dwn.slrm.generic.Constants;
 import dwn.slrm.generic.controllers.AbstractController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -29,4 +33,14 @@ public class ProjetController extends AbstractController<Projet, ProjetDto, Proj
         return super.getById(model, id);
     }
 
+    @Override
+    @PostMapping
+    public String save(@ModelAttribute("element") @Validated ProjetDto element, BindingResult result, Model model) {
+        if(result.hasErrors()) {
+            model.addAttribute("personnes", personneService.all());
+            model.addAttribute("competences", competencesService.all());
+            return byIdPath;
+        }
+        return super.save(element, result, model);
+    }
 }
