@@ -9,9 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping(Constants.COMPETENCE_PREFIX)
+@RequestMapping(Constants.DOSSIERPROJET_PREFIX)
 public class DossierProjetController extends AbstractController<Competence, CompetenceDto, CompetenceService> {
     protected DossierProjetController(CompetenceService service) {
-        super(service, Constants.COMPETENCE_PREFIX);
+        super(service, Constants.DOSSIERPROJET_PREFIX);
     }
 }
