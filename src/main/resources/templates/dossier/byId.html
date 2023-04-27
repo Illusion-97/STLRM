@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr"
+      th:replace="~{fragments/byId.html :: byId(~{ :: form})}">
+<form th:remove="tag">
+    <div class="col-6 col-12-xsmall">
+        <label for="projet">Nom du projet : <span th:each="err : ${#fields.errors('projet.id')}" th:text="${err}" /></label>
+        <select name="demo-category" id="projet" th:field="*{projet.id}" required>
+            <option th:value="0" selected>- Projet -</option>
+            <option th:each="projet : ${projects}" th:value="${projet.id}" th:text="${projet.nom}"></option>
+        </select>
+    </div>
+    <div class="col-6 col-12-xsmall">
+        <label for="année">Année du projet : <span th:errors="*{annee}"></span></label>
+        <input th:errorclass="invalid" type="text" pattern="^20(([0-1][0-9])|([[2][0-3]))$" id="année" th:field="*{annee}" placeholder="Année" required/>
+    </div>
+    <!-- Break -->
+    <div class="col-12">
+        <label for="candidat">Nom du Candidat : <span th:errors="*{candidat.id}"></span></label>
+        <select name="demo-category" id="candidat" th:field="*{candidat.id}" required>
+            <option th:value="0" selected>- Candidat -</option>
+            <option th:each="student : ${students}" th:value="${student.id}" th:text="${student.nom}"></option>
+        </select>
+    </div>
+</form>
+</html>

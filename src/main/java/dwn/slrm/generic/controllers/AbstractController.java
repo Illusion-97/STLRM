@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.List;
 
 public abstract class AbstractController<Entity,Dto,Service extends IAbstractCrudService<Entity,Dto>> {
 
@@ -33,7 +32,7 @@ public abstract class AbstractController<Entity,Dto,Service extends IAbstractCru
         return prefix + "/byId";
     }
 
-    @PostMapping
+    @PostMapping // POST -> /projet
     public String save(@Valid @ModelAttribute(name = "element") Dto element, BindingResult result) {
         if(result.hasErrors()){
             return prefix + "/byId";
