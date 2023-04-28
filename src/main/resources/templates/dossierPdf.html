@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html lang="fr">
+<head>
+    <title>Generic - Editorial by HTML5 UP</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/main.css" />
+</head>
+<body class="is-preload">
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Main -->
+    <div id="main">
+        <div class="inner">
+
+            <!-- Header -->
+            <header id="header">
+                <a href="index.html" class="logo" th:inline="text"><strong>Candidat :</strong> [[${dossier.candidat.nom}]] [[${dossier.candidat.prenom}]]</a>
+            </header>
+
+            <!-- Content -->
+            <section>
+                <header class="main">
+                    <h1 th:text="${dossier.projet.nom}">Generic</h1>
+                </header>
+                <div th:each="resume : ${dossier.resumes}" th:remove="tag">
+                    <h2 th:text="resume.langue"></h2>
+                    <p th:text="resume.texte"></p>
+                    <hr class="major" />
+                </div>
+
+                <h2>Compétences : </h2>
+                <ul>
+                    <li th:each="comp: ${dossier.projet.competences}" th:text="${comp.nom}"></li>
+                </ul>
+                <hr class="major" />
+
+                <h2>Participants : </h2>
+                <ul>
+                    <li th:each="participant: ${dossier.projet.participants}" th:inline="text">[[${participant.nom}]] [[${participant.prenom}]]</li>
+                </ul>
+                <hr class="major" />
+
+                <h2>Contenus :</h2>
+                <p th:each="contenu : ${dossier.projet.contenus}" th:text="${contenu}"></p>
+                <hr class="major" />
+
+                <h2>Annexes : </h2>
+                <img style="width: 100%"
+                     th:each="annexe : ${dossier.annexes}"
+                     th:if="${#strings.contains(annexe.type, 'image')}"
+                     th:src="${#strings.concat('/files/',annexe.id,'.',annexe.extension)}" th:alt="annexe.name"/>
+            </section>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
