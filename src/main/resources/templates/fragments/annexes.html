@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <div th:fragment="annexes(element)" th:remove="tag">
+      <label>Annexes :</label>
+      <table>
+          <thead>
+          <tr>
+              <th>#</th>
+              <th>Nom</th>
+              <th>Type</th>
+              <th>Aperçu</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="annexe : ${element.annexes}">
+              <td th:text="${annexe.id}"></td>
+              <td th:text="${annexe.name}"></td>
+              <td th:text="${annexe.extension}"></td>
+              <td th:if="${#strings.contains(annexe.type, 'image')}">
+                  <img style="width: 100%" th:src="${#strings.concat('/files/',annexe.id,'.',annexe.extension)}" th:alt="annexe.name"/>
+              </td>
+              <td th:unless="${#strings.contains(annexe.type, 'image')}">Apperçu indisponible</td>
+              <td style="display: flex; gap: 5px; justify-content: end">
+                  <a download th:href="${#strings.concat('/files/',annexe.id,'.',annexe.extension)}" class="button primary">Télécharger</a>
+                  <a th:href="${#strings.concat('/',prefix,'/removeAnnexe/',element.id,'/',annexe.id)}" class="button primary">Supprimer</a>
+              </td>
+          </tr>
+          </tbody>
+      </table>
+      <form th:action="${#strings.concat('/',prefix,'/addAnnexe/',element.id)}" method="post" enctype='multipart/form-data'>
+          <input type="file" name="file" id="file">
+          <input type="submit" class="button small primary" style="float: right" value="Ajouter"/>
+      </form>
+  </div>
+</body>
+</html>

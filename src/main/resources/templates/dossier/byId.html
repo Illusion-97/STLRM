@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="fr"
       th:replace="~{fragments/byId.html :: byId(~{ :: form})}">
 <form th:remove="tag">
+    <input type="hidden" th:field="*{resumes}">
     <div class="col-6 col-12-xsmall">
         <label for="projet">Nom du projet : <span th:each="err : ${#fields.errors('projet.id')}" th:text="${err}" /></label>
         <select name="demo-category" id="projet" th:field="*{projet.id}" required>

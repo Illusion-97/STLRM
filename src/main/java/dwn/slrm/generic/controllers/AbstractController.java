@@ -1,5 +1,6 @@
 package dwn.slrm.generic.controllers;
 
+import dwn.slrm.generic.models.Langues;
 import dwn.slrm.generic.services.IAbstractCrudService;
 import jakarta.validation.Valid;
 import org.springframework.ui.Model;
@@ -8,6 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.Arrays;
+import java.util.List;
 
 
 public abstract class AbstractController<Entity,Dto,Service extends IAbstractCrudService<Entity,Dto>> {
@@ -60,5 +64,9 @@ public abstract class AbstractController<Entity,Dto,Service extends IAbstractCru
     }
     protected String redirect(String path, long id) {
         return redirect(path) + "/" + id;
+    }
+    @ModelAttribute("langues")
+    public List<String> getLanges() {
+        return Arrays.stream(Langues.values()).map(Enum::name).toList();
     }
 }
