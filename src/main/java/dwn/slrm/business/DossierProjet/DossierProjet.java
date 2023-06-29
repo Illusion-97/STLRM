@@ -3,6 +3,7 @@ package dwn.slrm.business.DossierProjet;
 import dwn.slrm.business.Personne.Personne;
 import dwn.slrm.business.projets.Projet;
 import dwn.slrm.business.resume.Resume;
+import dwn.slrm.generic.models.AnnexableEntity;
 import dwn.slrm.generic.models.BaseEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
@@ -19,7 +20,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class DossierProjet extends BaseEntity {
+public class DossierProjet extends AnnexableEntity {
 
     private String annee;
     @ManyToOne

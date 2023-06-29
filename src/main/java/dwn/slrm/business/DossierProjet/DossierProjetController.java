@@ -3,6 +3,7 @@ package dwn.slrm.business.DossierProjet;
 import dwn.slrm.business.Personne.PersonneService;
 import dwn.slrm.business.projets.ProjetService;
 import dwn.slrm.generic.Constants;
+import dwn.slrm.generic.controllers.AbstractAnnexableController;
 import dwn.slrm.generic.controllers.AbstractController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +15,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping(Constants.DOSSIERPROJET_PREFIX)
-public class DossierProjetController extends AbstractController<DossierProjet, DossierProjetDto, DossierProjetService> {
+public class DossierProjetController extends AbstractAnnexableController<DossierProjet, DossierProjetDto, DossierProjetService> {
     private final PersonneService personneService;
     private final ProjetService projetService;
     protected DossierProjetController(DossierProjetService service, PersonneService personneService, ProjetService projetService) {

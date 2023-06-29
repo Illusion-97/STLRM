@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"
-      th:fragment="byId(form)"
+      th:fragment="byId(form,annexable)"
       th:replace="~{fragments/general.html :: htmlcontent('Sring Lombok Record MapStruct',~{ :: .body-content})}">
     <section class="body-content" th:remove="tag">
         <form method="post" th:action="@{'/'+${prefix}}" th:object="${element}">
@@ -16,6 +16,9 @@
                 </div>
             </div>
         </form>
-        <!-- Annexe SSI mon element possède une liste d'annexe (annexable) ET que son id est different -->
+        <!-- Annexe SSI mon element possède une liste d'annexe (annexable) ET que son id est different de 0 -->
+        <div th:if="${annexable}" class="col-12">
+            <div th:replace="~{fragments/annexes.html :: annexes(${element})}"></div>
+        </div>
     </section>
 </html>

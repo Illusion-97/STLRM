@@ -1,6 +1,7 @@
 package dwn.slrm.business.DossierProjet;
 
 import dwn.slrm.business.Personne.PersonneDto;
+import dwn.slrm.business.annexes.AnnexeDto;
 import dwn.slrm.business.projets.ProjetDto;
 import dwn.slrm.business.resume.ResumeDto;
 import lombok.AllArgsConstructor;
@@ -23,4 +24,5 @@ public class DossierProjetDto implements Serializable {
     private PersonneDto candidat;
     private ProjetDto projet;
     private List<ResumeDto> resumes;
+    private List<AnnexeDto> annexes;
 }

@@ -31,22 +31,22 @@ public abstract class AbstractController<Entity,Dto,Service extends IAbstractCru
     @GetMapping
     public String all(Model model) {
         model.addAttribute("elements", service.all());
-        return prefix + "/all";
+        return allPath;
     }
 
     @GetMapping("/{id}")
     public String getById(Model model, @PathVariable Long id) {
         model.addAttribute("element", service.byId(id));
-        return prefix + "/byId";
+        return byIdPath;
     }
 
     @PostMapping // POST -> /projet
     public String save(@Valid @ModelAttribute(name = "element") Dto element, BindingResult result, Model model) {
         if(result.hasErrors()){
-            return prefix + "/byId";
+            return byIdPath;
         }
         service.save(element);
-        return "redirect:/"+prefix;
+        return redirect(prefix);
     }
 
     // -> ResumeController

@@ -1,11 +1,13 @@
 package dwn.slrm.generic.controllers;
 
+import dwn.slrm.business.annexes.files.FileStorageService;
 import dwn.slrm.generic.Constants;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -14,6 +16,12 @@ import java.util.Objects;
 @ControllerAdvice // Indique des traitements (@ModelAttribute, @ExceptionHandler, ...) devant être exécutés par tous les controllers de mon application
 @RequestMapping
 public class GlobalController {
+
+    private final FileStorageService service;
+
+    public GlobalController(FileStorageService service) {
+        this.service = service;
+    }
 
     @GetMapping
     public String index() {
@@ -40,5 +48,13 @@ public class GlobalController {
         })
                 .filter(Objects::nonNull) // .filter(string -> string != null)
                 .toList();
+    }
+
+    @GetMapping("/files/{filename:.+}")
+    public ResponseEntity<Resource> load(@PathVariable String filename){
+        Resource file = service.load(filename);
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
+                .body(file);
     }
 }

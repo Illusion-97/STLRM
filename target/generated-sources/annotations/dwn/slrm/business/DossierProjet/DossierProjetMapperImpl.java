@@ -2,6 +2,8 @@ package dwn.slrm.business.DossierProjet;
 
 import dwn.slrm.business.Personne.Personne;
 import dwn.slrm.business.Personne.PersonneDto;
+import dwn.slrm.business.annexes.Annexe;
+import dwn.slrm.business.annexes.AnnexeDto;
 import dwn.slrm.business.competence.Competence;
 import dwn.slrm.business.competence.CompetenceDto;
 import dwn.slrm.business.projets.Projet;
@@ -16,7 +18,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-04-26T15:36:10+0200",
+    date = "2023-06-28T17:54:10+0200",
     comments = "version: 1.5.4.Final, compiler: javac, environment: Java 17.0.6 (Amazon.com Inc.)"
 )
 @Component
@@ -32,6 +34,7 @@ public class DossierProjetMapperImpl implements DossierProjetMapper {
 
         dossierProjet.setId( dto.getId() );
         dossierProjet.setVersion( dto.getVersion() );
+        dossierProjet.setAnnexes( annexeDtoListToAnnexeList( dto.getAnnexes() ) );
         dossierProjet.setAnnee( dto.getAnnee() );
         dossierProjet.setCandidat( personneDtoToPersonne( dto.getCandidat() ) );
         dossierProjet.setProjet( projetDtoToProjet( dto.getProjet() ) );
@@ -54,8 +57,37 @@ public class DossierProjetMapperImpl implements DossierProjetMapper {
         dossierProjetDto.setCandidat( personneToPersonneDto( entity.getCandidat() ) );
         dossierProjetDto.setProjet( projetToProjetDto( entity.getProjet() ) );
         dossierProjetDto.setResumes( resumeListToResumeDtoList( entity.getResumes() ) );
+        dossierProjetDto.setAnnexes( annexeListToAnnexeDtoList( entity.getAnnexes() ) );
 
         return dossierProjetDto;
+    }
+
+    protected Annexe annexeDtoToAnnexe(AnnexeDto annexeDto) {
+        if ( annexeDto == null ) {
+            return null;
+        }
+
+        Annexe annexe = new Annexe();
+
+        annexe.setId( annexeDto.id() );
+        annexe.setName( annexeDto.name() );
+        annexe.setExtension( annexeDto.extension() );
+        annexe.setType( annexeDto.type() );
+
+        return annexe;
+    }
+
+    protected List<Annexe> annexeDtoListToAnnexeList(List<AnnexeDto> list) {
+        if ( list == null ) {
+            return null;
+        }
+
+        List<Annexe> list1 = new ArrayList<Annexe>( list.size() );
+        for ( AnnexeDto annexeDto : list ) {
+            list1.add( annexeDtoToAnnexe( annexeDto ) );
+        }
+
+        return list1;
     }
 
     protected Personne personneDtoToPersonne(PersonneDto personneDto) {
@@ -270,6 +302,39 @@ public class DossierProjetMapperImpl implements DossierProjetMapper {
         List<ResumeDto> list1 = new ArrayList<ResumeDto>( list.size() );
         for ( Resume resume : list ) {
             list1.add( resumeToResumeDto( resume ) );
+        }
+
+        return list1;
+    }
+
+    protected AnnexeDto annexeToAnnexeDto(Annexe annexe) {
+        if ( annexe == null ) {
+            return null;
+        }
+
+        long id = 0L;
+        String name = null;
+        String extension = null;
+        String type = null;
+
+        id = annexe.getId();
+        name = annexe.getName();
+        extension = annexe.getExtension();
+        type = annexe.getType();
+
+        AnnexeDto annexeDto = new AnnexeDto( id, name, extension, type );
+
+        return annexeDto;
+    }
+
+    protected List<AnnexeDto> annexeListToAnnexeDtoList(List<Annexe> list) {
+        if ( list == null ) {
+            return null;
+        }
+
+        List<AnnexeDto> list1 = new ArrayList<AnnexeDto>( list.size() );
+        for ( Annexe annexe : list ) {
+            list1.add( annexeToAnnexeDto( annexe ) );
         }
 
         return list1;
