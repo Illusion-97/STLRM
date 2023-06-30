@@ -40,7 +40,7 @@ public abstract class AbstractCrudServiceImpl<
         repo.deleteById(id);
     }
 
-    private Entity getNewEntity() {
+    public Entity getNewEntity() {
         return GenericTools.getEntity(this.getClass(), 0,0);
     }
 }
