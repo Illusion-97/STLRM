@@ -4,11 +4,13 @@ import dwn.slrm.generic.services.AbstractCrudServiceImplTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
 import java.util.stream.Stream;
 
 @SpringBootTest // Initialise le contexte Spring pour les tests
+//@ActiveProfiles("test") Activer un profil de lancement -> application-pofile.properties
 public class ProjetServiceTest extends AbstractCrudServiceImplTest<Projet, ProjetDto, ProjetRepository, ProjetMapper> {
 
     @Autowired
